@@ -3,3 +3,4 @@ export/
 *.ai
 *.indd
 *.fig
+.DS_Store
