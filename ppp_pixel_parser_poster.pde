@@ -51,7 +51,7 @@ void setup() {
   // -----------------------------
 
   inventory = new IntDict();
-  seed      = loadImage("seed.png");
+  seed      = loadImage("seed_3.png");
 
   // Init buffers
   // -----------------------------

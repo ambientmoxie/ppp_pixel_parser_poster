@@ -7,12 +7,13 @@ float[] colorByBrightValue() {
   brightValues = new float[2];
   mi.loadPixels();
   for (int i = 0; i < mi.pixels.length; i++) {
-    brightColorValue = brightness(mi.pixels[i]);
+    brightColorValue = mi.brightness(mi.pixels[i]);
     brightnessInventory[i] = brightColorValue;
   }
   brightnessInventory = sort(brightnessInventory);
   brightValues[0] = brightnessInventory[brightnessInventory.length -1];
   brightValues[1] = brightnessInventory[0];
+  println(brightValues);
   return brightValues;
 }
 
@@ -25,11 +26,15 @@ float[] colorByBrightValue() {
 void generateBrightnessGradientBar() {
   colorByBrightValue();
   lbright.beginDraw();
+  lbright.colorMode(HSB, 360, 100, 100);
   lbright.noStroke();
   
+  
   float amount = 14.0;
-  color from   = int(brightValues[1]);
-  color to     = int(brightValues[0]);
+  color from   = lbright.color(0, 0, brightValues[1]);
+  color to     = lbright.color(0, 0, brightValues[0]);
+  
+  println(hex(from, 6), hex(to, 6));
   float w      = lbright.width / amount;
   float h      = lbright.height;
   color inter;
@@ -38,16 +43,16 @@ void generateBrightnessGradientBar() {
   for (int i = 0; i < amount; i++) {
 
     interIndex = map(i, 0, amount, 0, 1);
-    inter = lbright.lerpColor(from, to, interIndex);
+    inter = lerpColor(from, to, interIndex);
 
-    if (i == 0) {
-      lbright.fill(from);
-    } else if (i == 14) {
-      lbright.fill(to);
-    } else {
-      lbright.fill(inter);
-    }
-
+    //if (i == 0) {
+    //  lbright.fill(from);
+    //} else if (i == 14) {
+    //  lbright.fill(to);
+    //} else {
+      
+    //}
+    lbright.fill(inter);
     lbright.rect(w * i, 0, w, h);
   }
   
