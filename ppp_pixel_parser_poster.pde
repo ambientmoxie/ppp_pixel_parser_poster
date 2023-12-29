@@ -53,7 +53,7 @@ PGraphics lg;
 PImage pngLogo;
 PImage jpgLogo;
 
-String filename = "jl.jpg";
+String filename = "darkest.png";
 
 void setup() {
   size(1000, 1000);
@@ -72,9 +72,9 @@ void setup() {
   // Init buffers
   // -----------------------------
   sampleImage = createGraphics(444, 400);
-  mi   = createGraphics(444 * factor, 400 * factor);
+  mi   = createGraphics(2614, 2360);
   rzs  = createGraphics(111 * factor, 100 * factor);
-  rz   = createGraphics(111 * factor, 100 * factor);
+  rz   = createGraphics(654, 590);
   rvbs = createGraphics(654, 782);
   rvb  = createGraphics(654, 782);
   sg   = createGraphics(1962, 1060);
@@ -112,6 +112,7 @@ void setup() {
   generateGradientLines();
   generateTwoBlocs();
   generateLogoAsset();
+
 
   print("done.");
 }
