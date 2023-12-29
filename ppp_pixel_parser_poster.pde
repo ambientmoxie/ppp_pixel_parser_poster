@@ -1,6 +1,7 @@
-int factor = 10;
+int factor = 1;
 
 // Main image
+PGraphics sampleImage;
 PGraphics mi;
 PImage seed;
 
@@ -19,7 +20,7 @@ PGraphics sg;
 IntDict   inventory;
 String[]  colorKeys;
 
-int averageColorValue;
+float averageColorValue;
 
 // Bright Gradient
 PGraphics lbright;
@@ -49,14 +50,15 @@ float     blueColorValue;
 void setup() {
   size(100, 100);
 
-  // Init dictionnary and image
-  // -----------------------------
+    // Init dictionnary and image
+    // -----------------------------
 
   inventory = new IntDict();
   seed      = loadImage("dark.png");
 
   // Init buffers
   // -----------------------------
+  sampleImage = createGraphics(444, 400);
   mi   = createGraphics(444 * factor, 400 * factor);
   rzs  = createGraphics(111 * factor, 100 * factor);
   rz   = createGraphics(111 * factor, 100 * factor);
@@ -73,24 +75,33 @@ void setup() {
 
   // Init inventories and functions
   // -----------------------------
-  
+
+  generateSampleImage(); // needs to be called first
   generateMainImage(); // needs to be called first
-  
+
   brightnessInventory = new float[mi.pixels.length];
   redInventory        = new float[mi.pixels.length];
   greenInventory      = new float[mi.pixels.length];
   blueInventory       = new float[mi.pixels.length];
-  
+
   //generateRasterImage();
   //generateSortedGrid();
   //generateRVBImage();
-  averageColorValue();
+  computeAverageColorValue();
   //generateAllGradientsRed();
   //generateAllGradientsGreen();
   //generateAllGradientsBlue();
   //generateBrightnessGradientBar();
 
   print("done.");
+}
+
+void generateSampleImage(){
+  sampleImage.beginDraw();
+  sampleImage.colorMode(HSB,360,100,100);
+  seed.resize(sampleImage.width, 0);
+  sampleImage.image(seed, 0, (sampleImage.height / 10) * -1);
+  sampleImage.endDraw();
 }
 
 int index(int x, int y, int target_width) {

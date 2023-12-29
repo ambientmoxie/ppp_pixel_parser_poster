@@ -3,24 +3,28 @@
 // [0] = Lighest value of the image.
 // [1] = Darkest value of the image.
 
-float averageColorValue() {
+float computeAverageColorValue() {
 
-  averageColorValue = 0;
+  averageColorValue = 0.0;
 
-  mi.loadPixels();
-  for (int i = 0; i < mi.pixels.length; i++) {
-    brightColorValue = mi.brightness(mi.pixels[i]);
-    brightColorValue = round(brightColorValue);
-    brightnessInventory[i] = brightColorValue;
-  }
-
-  for ( int i = 0; i < brightnessInventory.length; ++i ) {
-    averageColorValue += brightnessInventory[i];
-  }
+  sampleImage.loadPixels();
   
-  averageColorValue /= brightnessInventory.length;
+  // step = factor to normalize the data
+  
+  for (int i = 0; i < sampleImage.pixels.length; i ++) {
+    brightColorValue = sampleImage.brightness(sampleImage.pixels[i]);
+    brightnessInventory[i] = brightColorValue;
+    averageColorValue += brightColorValue;
+    if(brightnessInventory[i] > 100){
+       println("larger than 100"); 
+    }
+  }
 
-  println(brightnessInventory[98]);
+  if (sampleImage.pixels.length > 0) { 
+  averageColorValue /= sampleImage.pixels.length; // divide by factor to normalize the data
+  }
+
+  println(averageColorValue);
   return averageColorValue;
 }
 
