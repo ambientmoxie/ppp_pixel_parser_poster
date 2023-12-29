@@ -1,6 +1,11 @@
 
-// RVB Modules
-// ----------
+// Variables
+// ----
+
+PGraphics rvbs;
+PGraphics rvb;
+color newValue;
+color colorCheck;
 
 void generateRVBSeed() {
   rvbs.beginDraw();
@@ -11,7 +16,7 @@ void generateRVBSeed() {
 
 void generateRVBImage() {
   generateRVBSeed();
-  
+
   rvb.beginDraw();
   rvbs.loadPixels();
   rvb.loadPixels();

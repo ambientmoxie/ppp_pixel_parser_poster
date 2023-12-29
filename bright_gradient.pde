@@ -1,43 +1,14 @@
-// Return avergae bright value
-// ---------------------------
 
+// Variables
+// ----
 
-float computeAverageColorValue(float sampleColorValue, float[] sampleColorInventory, String channel) {
+PGraphics btb;  
+float[]   brightnessInventory;
+float     brightColorValue;
 
-  averageColorValue = 0.0;
-  sampleImage.loadPixels();
-
-  for (int i = 0; i < sampleImage.pixels.length; i ++) {
-
-    switch(channel) {
-    case "brightness":
-      sampleColorValue = sampleImage.brightness(sampleImage.pixels[i]);
-      break;
-    case "red":
-      sampleColorValue = red(sampleImage.pixels[i]);
-      break;
-    case "green":
-      sampleColorValue = green(sampleImage.pixels[i]);
-      break;
-    case "blue":
-      sampleColorValue = blue(sampleImage.pixels[i]);
-      break;
-    }
-
-    sampleColorInventory[i] = sampleColorValue;
-    averageColorValue += sampleColorValue;
-  }
-
-  if (sampleImage.pixels.length > 0) {
-    averageColorValue /= sampleImage.pixels.length;
-  }
-
-  println(averageColorValue);
-  return averageColorValue;
-}
-
-// Generate the lerping brightness bar.
-// ------------------------------------
+// Return brightness gradient
+// ----
+// From average brightness value in the image to white
 
 void generateBrightnessGradientBar() {
 
@@ -45,17 +16,17 @@ void generateBrightnessGradientBar() {
   
   println("radius value of the rect in degres is: " + floor(map(averageColorValue, 0, 100, 0, 288)));
 
-  lbright.beginDraw();
-  lbright.colorMode(HSB, 360, 100, 100);
-  lbright.noStroke();
+  btb.beginDraw();
+  btb.colorMode(HSB, 360, 100, 100);
+  btb.noStroke();
 
 
   float amount = 14.0;
-  color from   = lbright.color(0, 0, averageColorValue);
-  color to     = lbright.color(0, 0, 100);
+  color from   = btb.color(0, 0, averageColorValue);
+  color to     = btb.color(0, 0, 100);
 
-  float w      = lbright.width / amount;
-  float h      = lbright.height;
+  float w      = btb.width / amount;
+  float h      = btb.height;
   color inter;
   float interIndex;
 
@@ -65,15 +36,15 @@ void generateBrightnessGradientBar() {
     inter = lerpColor(from, to, interIndex);
 
     if (i == 0) {
-      lbright.fill(from);
+      btb.fill(from);
     } else if (i == amount - 1) {
-      lbright.fill(to);
+      btb.fill(to);
     } else {
-      lbright.fill(inter);
+      btb.fill(inter);
     }
-    lbright.rect(w * i, 0, w, h);
+    btb.rect(w * i, 0, w, h);
   }
 
-  lbright.save("export/gradient/bright_gradient.jpg");
-  lbright.endDraw();
+  btb.save("export/gradient/bright_gradient.jpg");
+  btb.endDraw();
 }

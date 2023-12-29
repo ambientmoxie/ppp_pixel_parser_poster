@@ -1,15 +1,20 @@
 
-// Create an ordered color dictionary
-// ----------------------------------
-// Load image pixels and loop through all the pixels of the visible image.
-// Get the color of each pixel and convert it into a string.
+// Variables
+// ----
+
+PGraphics sdg; 
+IntDict   inventory; 
+String[]  colorKeys;
+
+// Store colors into a dictionnary and sort the values from lowest to highest.
+// ----
 
 void generateSortedColors() {
 
-  mi.loadPixels();
+  sdb.loadPixels();
   
-  for (int i = 0; i < mi.pixels.length; i++) {
-    String sc = hex(mi.pixels[i]);
+  for (int i = 0; i < sdb.pixels.length; i++) {
+    String sc = hex(sdb.pixels[i]);
     if (inventory.hasKey(sc) == true || i != 0) {
       inventory.increment(sc);
     } else {
@@ -23,28 +28,26 @@ void generateSortedColors() {
 
 void generateSortedGrid() {
   
-  generateSortedColors();
-  
   int anchor = 0;
 
-  sg.beginDraw();
-  sg.background(255, 0, 0);
-  sg.noStroke();
+  sdg.beginDraw();
+  sdg.background(255, 0, 0);
+  sdg.noStroke();
 
-  float w = sg.width / 18;
-  float h = sg.height / 10;
+  float w = sdg.width / 18;
+  float h = sdg.height / 10;
 
   for (int x = 0; x < 18; x++) {
     for (int y = 0; y < 10; y++) {
      
       int mapIndex = floor(map(anchor, 0, 180, 0, inventory.size()));
 
-      sg.fill(unhex(colorKeys[mapIndex]));
-      sg.rect(w * x, h * y, w, h);
+      sdg.fill(unhex(colorKeys[mapIndex]));
+      sdg.rect(w * x, h * y, w, h);
 
       anchor++;
     }
   }
-  sg.save("export/sorted_grid/sorted_grid.jpg");
-  sg.endDraw();
+  sdg.save("export/sorted_grid/sorted_grid.jpg");
+  sdg.endDraw();
 }

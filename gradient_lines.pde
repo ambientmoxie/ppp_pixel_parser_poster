@@ -1,3 +1,13 @@
+
+// Variables
+// ----
+
+PGraphics gtb;
+
+// Return gradient
+// ----
+// From average brightness value in the image to white
+
 void generateGradientLines() {
 
   int randomFinalColor = round(random(0,inventory.size() - 1));
@@ -6,18 +16,18 @@ void generateGradientLines() {
   color inter;
   float interIndex;
   
-  println("end color for gradient lines module is " + randomFinalColor);
+  println("Recorded color index " + randomFinalColor);
 
-  gl.beginDraw();
+  gtb.beginDraw();
 
-  for (int i = 0; i < gl.width; i++) {
+  for (int i = 0; i < gtb.width; i++) {
 
-    interIndex = map(i, 0, gl.width, 0, 1);
-    inter = gl.lerpColor(from, to, interIndex);
+    interIndex = map(i, 0, gtb.width, 0, 1);
+    inter = gtb.lerpColor(from, to, interIndex);
 
-    gl.stroke(inter);
-    gl.line(i, 0, i, height);
+    gtb.stroke(inter);
+    gtb.line(i, 0, i, height);
   }
-  gl.save("export/gradient/gradient-line.jpg");
-  gl.endDraw();
+  gtb.save("export/gradient/gradient-line.jpg");
+  gtb.endDraw();
 }

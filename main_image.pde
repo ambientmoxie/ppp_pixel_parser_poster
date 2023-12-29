@@ -1,12 +1,16 @@
 
-// Main Image
-// ----------
-// Display and export the seed image
+// Variables
+// ----
+
+PGraphics sdb;
+
+// Returns resized seed image
+// ----
 
 void generateMainImage() {
-  mi.beginDraw();
-  seed.resize(mi.width, 0);
-  mi.image(seed, 0, (mi.height / 10) * -1);
-  mi.save("export/main_image/mi.png");
-  mi.endDraw();
+  sdb.beginDraw();
+  seed.resize(sdb.width, 0);
+  sdb.image(seed, 0, (sdb.height / 10) * -1);
+  sdb.save("export/main_image/sdb.png");
+  sdb.endDraw();
 }

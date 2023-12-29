@@ -1,33 +1,45 @@
+
+// Variables
+// ----
+
+PGraphics gnb;  
+float[]   greenInventory;
+float     greenColorValue;
+
+// Return green gradient
+// ----
+// From average green value in the image to white
+
 void generateGreenGradientBar() {
 
   computeAverageColorValue(greenColorValue, greenInventory, "green");
 
-  lgreen.beginDraw();
-  lgreen.noStroke();
+  gnb.beginDraw();
+  gnb.noStroke();
 
   float amount = 7.0;
   color from   = color(0, averageColorValue, 0);
   color to     = color(255, 255, 255);
-  float w      = lgreen.width / amount;
-  float h      = lgreen.height;
+  float w      = gnb.width / amount;
+  float h      = gnb.height;
   color inter;
   float interIndex;
 
   for (int i = 0; i < amount; i++) {
 
     interIndex = map(i, 0, amount, 0, 1);
-    inter = lgreen.lerpColor(from, to, interIndex);
+    inter = gnb.lerpColor(from, to, interIndex);
 
     if (i == 0) {
-      lgreen.fill(from);
+      gnb.fill(from);
     } else if (i == amount - 1) {
-      lgreen.fill(to);
+      gnb.fill(to);
     } else {
-      lgreen.fill(inter);
+      gnb.fill(inter);
     }
-    lgreen.rect(w * i, 0, w, h);
+    gnb.rect(w * i, 0, w, h);
   }
 
-  lgreen.save("export/gradient/green-gradient-td.jpg");
-  lgreen.endDraw();
+  gnb.save("export/gradient/green-gradient-td.jpg");
+  gnb.endDraw();
 }

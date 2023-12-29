@@ -1,18 +1,21 @@
+
+// Variables
+// ----
+
+PGraphics cbb;
+
 void generateTwoBlocs(){
   
-  int randomFinalColor = round(random(0,inventory.size() - 1));
+  cbb.beginDraw();
+  cbb.noStroke();
   
-  tb.beginDraw();
-  tb.noStroke();
+  cbb.fill(unhex(colorKeys[0]));
+  cbb.rect(0, 0, cbb.width / 2, cbb.height);
+  cbb.fill(unhex(colorKeys[1687])); // Use recorded index
+  cbb.rect(cbb.width / 2, 0, cbb.width / 2, cbb.height);
   
-  tb.fill(unhex(colorKeys[0]));
-  tb.rect(0, 0, tb.width / 2, tb.height);
-  tb.fill(unhex(colorKeys[48]));
-  tb.rect(tb.width / 2, 0, tb.width / 2, tb.height);
+  cbb.save("export/two_blocs/two_blocs.jpg");
   
-  println("end color for two blocs module is " + randomFinalColor);
-  tb.save("export/two_blocs/two_blocs.jpg");
-  
-  tb.endDraw();
+  cbb.endDraw();
   
 }

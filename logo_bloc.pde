@@ -1,21 +1,32 @@
+
+// Variables
+// ----
+
+PGraphics lob;
+PImage pngLogo;
+PImage jpgLogo;
+
+// Return jpg or png logo
+// ----
+
 void generateLogoAsset(){
   
-  lg.beginDraw();
-  lg.background(255);
-  lg.imageMode(CENTER);
-  jpgLogo.resize(lg.width / 2, 0);
-  pngLogo.resize(lg.width / 2, 0);
-  lg.translate(lg.width / 2, lg.height / 2);
+  String extension = getFileExtension(filename);
   
-  println(getFileExtension(filename) == "png");
+  lob.beginDraw();
+  lob.background(255);
+  lob.imageMode(CENTER);
+  jpgLogo.resize(lob.width / 2, 0);
+  pngLogo.resize(lob.width / 2, 0);
+  lob.translate(lob.width / 2, lob.height / 2);
   
-  if(getFileExtension(filename).equals("png")){
-    lg.image(pngLogo, 0, 0);
+  if(extension.equals("png")){
+    lob.image(pngLogo, 0, 0);
   }else {
-    lg.image(jpgLogo, 0, 0);  
+    lob.image(jpgLogo, 0, 0);  
   }
   
-  lg.save("export/logo/format.jpg");
-  lg.endDraw();
+  lob.save("export/logo/format.jpg");
+  lob.endDraw();
   
 }
