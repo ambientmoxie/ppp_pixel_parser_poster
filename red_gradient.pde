@@ -22,6 +22,7 @@ float[] colorByRedValue() {
   redInventory = sort(redInventory);
   redValues[0] = redInventory[redInventory.length -1];
   redValues[1] = redInventory[0];
+  println(redValues);
   return redValues;
 }
 

@@ -19,10 +19,12 @@ PGraphics sg;
 IntDict   inventory;
 String[]  colorKeys;
 
+int averageColorValue;
+
 // Bright Gradient
 PGraphics lbright;
 float[]   brightnessInventory;
-float[]   brightValues;
+//float     brightValues;
 float     brightColorValue;
 
 // Red Gradient
@@ -51,7 +53,7 @@ void setup() {
   // -----------------------------
 
   inventory = new IntDict();
-  seed      = loadImage("seed_3.png");
+  seed      = loadImage("dark.png");
 
   // Init buffers
   // -----------------------------
@@ -79,13 +81,14 @@ void setup() {
   greenInventory      = new float[mi.pixels.length];
   blueInventory       = new float[mi.pixels.length];
   
-  generateRasterImage();
-  generateSortedGrid();
-  generateRVBImage();
-  generateAllGradientsRed();
-  generateAllGradientsGreen();
-  generateAllGradientsBlue();
-  generateBrightnessGradientBar();
+  //generateRasterImage();
+  //generateSortedGrid();
+  //generateRVBImage();
+  averageColorValue();
+  //generateAllGradientsRed();
+  //generateAllGradientsGreen();
+  //generateAllGradientsBlue();
+  //generateBrightnessGradientBar();
 
   print("done.");
 }
