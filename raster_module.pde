@@ -3,6 +3,7 @@
 
 void generateRasterSeed() {
   rzs.beginDraw();
+  rzs.colorMode(HSB,360,100,100);
   seed.resize(rzs.width, 0);
   rzs.image(seed, 0, (rzs.height / 12) * -1);
   rzs.endDraw();
@@ -32,7 +33,7 @@ void generateRasterImage() {
         color c = rzs.pixels[index(targetPixelX, targetPixelY, rzs.width)];
         float bc = brightness(c);
 
-        if (bc > 110) {
+        if (bc < 50) {
           rz.fill(0);
         } else {
           rz.fill(255);
