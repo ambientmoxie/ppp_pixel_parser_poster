@@ -4,12 +4,12 @@
 
 PImage    seed;
 PGraphics flo; // Final Ouput
-String    filename = "seed.png";
+String    filename = "darkest.png";
 float     averageColorValue;
 
 
 void setup() {
-  size(1000, 1000);
+  size(100, 100);
 
   // Init dictionnary and image
   // ----
@@ -57,78 +57,10 @@ void setup() {
   greenInventory      = new float[sdb.pixels.length];
   blueInventory       = new float[sdb.pixels.length];
   redInventory        = new float[sdb.pixels.length];
-
-  // Export all assets
-  // ----
-
-  generateBrightnessGradientBar();
-  generateGreenGradientBar();
-  generateBlueGradientBar();
-  generateRedGradientBar();
-  generateGradientLines();
-  generateRasterImage();
-  generateSortedGrid();
-  generateLogoAsset();
-  generateTwoBlocs();
-  generateRVBImages();
   
   generateFinalOutput();
   
 
   print("done.");
-}
-
-// Return index in pixel array
-// ----
-
-int index(int x, int y, int target_width) {
-  return x + y * target_width;
-}
-
-// Return file extension
-// ----
-
-String getFileExtension(String filename) {
-  int lastIndexOfDot = filename.lastIndexOf('.');
-  if (lastIndexOfDot > 0) {
-    return filename.substring(lastIndexOfDot + 1);
-  } else {
-    return "";
-  }
-}
-
-// Return average color (RVB and brightness);
-// ----
-
-float computeAverageColorValue(float sampleColorValue, float[] sampleColorInventory, String channel) {
-
-  averageColorValue = 0.0;
-  sdb.loadPixels();
-
-  for (int i = 0; i < sdb.pixels.length; i ++) {
-
-    switch(channel) {
-    case "brightness":
-      sampleColorValue = sdb.brightness(sdb.pixels[i]);
-      break;
-    case "red":
-      sampleColorValue = red(sdb.pixels[i]);
-      break;
-    case "green":
-      sampleColorValue = green(sdb.pixels[i]);
-      break;
-    case "blue":
-      sampleColorValue = blue(sdb.pixels[i]);
-      break;
-    }
-
-    sampleColorInventory[i] = sampleColorValue;
-    averageColorValue += sampleColorValue;
-  }
-
-  if (sdb.pixels.length > 0) {
-    averageColorValue /= sdb.pixels.length;
-  }
-
-  return averageColorValue;
+  background(0,255,0);
 }
