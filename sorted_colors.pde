@@ -2,7 +2,7 @@
 // Variables
 // ----
 
-PGraphics sdg; 
+PGraphics sdg; // Sorted grid
 IntDict   inventory; 
 String[]  colorKeys;
 
@@ -48,6 +48,6 @@ void generateSortedGrid() {
       anchor++;
     }
   }
-  sdg.save("export/sorted_grid/sorted_grid.jpg");
+  //sdg.save("export/sorted_grid/sorted_grid.jpg");
   sdg.endDraw();
 }

@@ -40,6 +40,6 @@ void generateBlueGradientBar() {
     beb.rect(w * i, 0, w, h);
   }
 
-  beb.save("export/gradient/blue-gradient-td.jpg");
+  //beb.save("export/gradient/blue-gradient-td.jpg");
   beb.endDraw();
 }

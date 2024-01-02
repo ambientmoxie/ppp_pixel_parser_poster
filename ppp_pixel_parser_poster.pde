@@ -3,8 +3,9 @@
 // ----
 
 PImage    seed;
-String filename = "seed.png";
-float averageColorValue;
+PGraphics flo; // Final Ouput
+String    filename = "seed.png";
+float     averageColorValue;
 
 
 void setup() {
@@ -21,11 +22,18 @@ void setup() {
   // Init buffers
   // ----
 
+  flo  = createGraphics(3268, 4721); // A3 ratio (120px margin)
+  
   sdb  = createGraphics(2614, 2360);
   cds  = createGraphics(654, 590);
-  ced  = createGraphics(654, 590);
+  ced1  = createGraphics(654, 590);
+  ced2  = createGraphics(654, 590);
+  ced3  = createGraphics(654, 590);
+  ced4  = createGraphics(654, 590);
   rvbs = createGraphics(654, 782);
-  rvb  = createGraphics(654, 782);
+  rds  = createGraphics(654, 782);
+  gns  = createGraphics(654, 782);
+  bes  = createGraphics(654, 782);
   sdg  = createGraphics(1962, 1060);
   cbb  = createGraphics(1307, 782);
   lob  = createGraphics(1307, 1059);
@@ -61,8 +69,11 @@ void setup() {
   generateRasterImage();
   generateSortedGrid();
   generateLogoAsset();
-  generateRVBImage();
   generateTwoBlocs();
+  generateRVBImages();
+  
+  generateFinalOutput();
+  
 
   print("done.");
 }

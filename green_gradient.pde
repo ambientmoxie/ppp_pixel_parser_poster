@@ -39,7 +39,5 @@ void generateGreenGradientBar() {
     }
     gnb.rect(w * i, 0, w, h);
   }
-
-  gnb.save("export/gradient/green-gradient-td.jpg");
   gnb.endDraw();
 }

@@ -40,6 +40,6 @@ void generateRedGradientBar() {
     rdb.rect(w * i, 0, w, h);
   }
 
-  rdb.save("export/gradient/red-gradient-td.jpg");
+  //rdb.save("export/gradient/red-gradient-td.jpg");
   rdb.endDraw();
 }

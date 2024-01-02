@@ -22,11 +22,11 @@ void generateLogoAsset(){
   
   if(extension.equals("png")){
     lob.image(pngLogo, 0, 0);
-  }else {
+  } else {
     lob.image(jpgLogo, 0, 0);  
   }
   
-  lob.save("export/logo/format.jpg");
+  //lob.save("export/logo/format.jpg");
   lob.endDraw();
   
 }
