@@ -1,10 +1,7 @@
 
-// Variables
-// ----
-
 PImage    seed;
 PGraphics flo; // Final Ouput
-String    filename = "darkest.png";
+String    filename = "araki_3.jpg";
 float     averageColorValue;
 
 

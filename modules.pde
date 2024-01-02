@@ -105,18 +105,21 @@ void generateRasterImage() {
     switch(i) {
     case 0:
       createPattern(2, ced1);
+      ced1.save("export/shader/shader1.tif");
       break;
     case 1:
-      createPattern(10, ced2);
+      createPattern(4, ced2);
+      ced2.save("export/shader/shader2.tif");
       break;
     case 2:
       createPattern(20, ced3);
+      ced3.save("export/shader/shader3.tif");
       break;
     case 3:
       createPattern(100, ced4);
+      ced4.save("export/shader/shader4.tif");
       break;
     }
-
     i += 1;
   }
 }
@@ -135,7 +138,7 @@ void createPattern(int account, PGraphics buffer) {
       color c = cds.pixels[index(targetPixelX, targetPixelY, cds.width)];
       float bc = brightness(c);
 
-      buffer.fill(bc < 50 ? 0 : 255);
+      buffer.fill(bc < 180 ? 0 : 255);
       buffer.ellipse(cw * x + cw / 2, ch * y + ch / 2, cw, ch);
     }
   }
@@ -169,14 +172,13 @@ void generateSortedGrid() {
   int anchor = 0;
 
   sdg.beginDraw();
-  sdg.background(255, 0, 0);
   sdg.noStroke();
 
   float w = sdg.width / 18;
   float h = sdg.height / 10;
 
-  for (int x = 0; x < 18; x++) {
-    for (int y = 0; y < 10; y++) {
+  for (int y = 0; y < 10; y++) {
+    for (int x = 0; x < 18; x++) {
 
       int mapIndex = floor(map(anchor, 0, 180, 0, inventory.size()));
 
@@ -331,7 +333,7 @@ void generateBlueGradientBar() {
 void generateGradientLines() {
 
   color from = color(unhex(colorKeys[0]));
-  color to   = color(unhex(colorKeys[421])); // Recorded color here
+  color to   = color(unhex(colorKeys[181055])); // Recorded color here
   color inter;
   float interIndex;
 
@@ -349,7 +351,7 @@ void generateGradientLines() {
 }
 
 // ----
-// 08 - Brighntess gradient
+// 09 - Brighntess gradient
 // ----
 
 void generateBrightnessGradientBar() {
@@ -362,7 +364,7 @@ void generateBrightnessGradientBar() {
 
 
   float amount = 14.0;
-  color from   = btb.color(0, 0, averageColorValue);
+  color from   = btb.color(0, 0, averageColorValue - 80);
   color to     = btb.color(0, 0, 100);
 
   float w      = btb.width / amount;
@@ -441,7 +443,7 @@ void generateTwoBlocs() {
 
   cbb.fill(unhex(colorKeys[0]));
   cbb.rect(0, 0, cbb.width / 2, cbb.height);
-  cbb.fill(unhex(colorKeys[randomFinalColor])); // Use recorded index
+  cbb.fill(unhex(colorKeys[181055])); // Use recorded index
   cbb.rect(cbb.width / 2, 0, cbb.width / 2, cbb.height);
 
   println("Recorded color index " + randomFinalColor);
