@@ -66,10 +66,10 @@ void createPattern(int account, PGraphics buffer, String filename) {
       float bc = brightness(c);
 
       buffer.fill(bc < 50 ? 0 : 255);
-      buffer.ellipse(cw * x + cw / 2, ch * y + ch / 2, cw, ch); // Corrected position
+      buffer.ellipse(cw * x + cw / 2, ch * y + ch / 2, cw, ch);
     }
   }
 
   buffer.endDraw();
-  buffer.save("export/raster/" + filename + ".tif"); // Save once after drawing is complete
+  buffer.save("export/raster/" + filename + ".tif"); 
 }

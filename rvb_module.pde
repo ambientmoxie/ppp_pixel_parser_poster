@@ -18,67 +18,31 @@ void generateRVBseed() {
 
 void generateRVBImages() {
   generateRVBseed();
+  rvbs.loadPixels();
 
   rds.beginDraw();
   gns.beginDraw();
   bes.beginDraw();
-  
-  // Load pixels of the seed impage and buffers
-
-  rvbs.loadPixels();
   rds.loadPixels();
   gns.loadPixels();
   bes.loadPixels();
 
-  int p = 0;
-
-  while (p < 3) {
-    for (int i = 0; i < rvbs.pixels.length; i++) {
-      
-      // Generate the red, green and blue version of the seed
-
-      switch(p) {
-      case 0:
-        newValue = color(255, 0, 0);
-        colorCheck = int(red(rvbs.pixels[i]));
-        if (colorCheck > 30) {
-          rds.pixels[i] = newValue;
-        } else {
-          rds.pixels[i] = color(255);
-        }
-        break;
-      case 1:
-        newValue = color(0, 255, 0);
-        colorCheck = int(green(rvbs.pixels[i]));
-        if (colorCheck > 30) {
-          gns.pixels[i] = newValue;
-        } else {
-          gns.pixels[i] = color(255);
-        }
-        break;
-      case 2:
-        newValue = color(0, 0, 255);
-        colorCheck = int(blue(rvbs.pixels[i]));
-        if (colorCheck > 30) {
-          bes.pixels[i] = newValue;
-        } else {
-          bes.pixels[i] = color(255);
-        }
-        break;
-      }
-    }
-    
-    // Update pixels of buffers
-    rds.updatePixels();
-    gns.updatePixels();
-    bes.updatePixels();
-    rds.save("export/rvb/rds.jpg");
-    gns.save("export/rvb/gns.jpg");
-    bes.save("export/rvb/bes.jpg");
-    p++;
+  for (int i = 0; i < rvbs.pixels.length; i++) {
+    createPattern(rds, i, color(255, 0, 0), int(red(rvbs.pixels[i])));
+    createPattern(gns, i, color(0, 255, 0), int(green(rvbs.pixels[i])));
+    createPattern(bes, i, color(0, 0, 255), int(blue(rvbs.pixels[i])));
   }
 
+  rds.updatePixels();
+  gns.updatePixels();
+  bes.updatePixels();
   rds.endDraw();
   gns.endDraw();
   bes.endDraw();
+
+  // Save your shaders here if needed
+}
+
+void createPattern(PGraphics buffer, int i, color newValue, int colorIntensity) {
+  buffer.pixels[i] = colorIntensity > 30 ? newValue : color(255);
 }

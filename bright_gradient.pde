@@ -44,7 +44,6 @@ void generateBrightnessGradientBar() {
     }
     btb.rect(w * i, 0, w, h);
   }
-
-  //btb.save("export/gradient/bright_gradient.jpg");
+ 
   btb.endDraw();
 }
